@@ -4,6 +4,8 @@ import {
   useGetContactsQuery,
   useDeleteContactMutation,
 } from '../../redux/contactsApi';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 export const ContactList = () => {
   const { data, error, isLoading } = useGetContactsQuery();
@@ -26,22 +28,23 @@ export const ContactList = () => {
       ) : isLoading ? (
         <>Loading Contacts...</>
       ) : data ? (
-        <ul>
+        <ListGroup as="ol" numbered>
           {contacts.map(({ name, phone, id }) => (
-            <li key={id}>
+            <ListGroup.Item as="li" key={id}>
               <span>{`${name}: ${phone}`}</span>
               <span>
-                <button
+                <Button
+                  variant="warning"
                   className={css.contact}
                   disabled={result.isLoading}
                   onClick={() => deleteContact(id)}
                 >
                   delete
-                </button>
+                </Button>
               </span>
-            </li>
+            </ListGroup.Item>
           ))}
-        </ul>
+        </ListGroup>
       ) : null}
     </>
   );

@@ -55,7 +55,7 @@ export const PhonebookForm = () => {
         />
       </label>
 
-      <button type="submit">Добавить контакт</button>
+      <button type="submit">Add contact</button>
     </form>
   );
 };
